@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+	function fun(event)
+	{
+		event.preventDefault();
+		var username=document.getElementById("uname").value;
+		var password=document.getElementById("psd").value;
+		
+		var keyValue="ufyjswgde6tuuuuuuuuuuuuuuuf"+username+"ehfyuiuiuiuiuiuiuiuiuiejw"+password+"wuefyqgeyfhvdhc";
+		var data="key="+encodeURIComponent(keyValue);
+		window.location.href="/SimpleFilter/FilterServlet?"+data;
+	}
+</script>
+</head>
+<body>
+<form action="FilterServlet" method="get" onsubmit="fun(event)">
+	username:<input type="text" name="un" id="uname">password:<input type="password" name="pwd" id="psd">
+	<input type="submit" id="sb" name="sub" value="Submit">
+</form>
+</body>
+</html>

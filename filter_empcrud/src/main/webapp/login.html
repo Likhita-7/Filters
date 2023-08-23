@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+	
+		 function fu(event){
+			 console.log("came to fu");
+			 event.preventDefault();
+			 var u=document.getElementById("nm").value;
+			 var p=document.getElementById("pss").value;
+			 
+			 var k="chfgchgc"+u+p;
+			 var kvalue=encodeURIComponent(k);
+			 sessionStorage.setItem("kk",kvalue);
+			 window.location.href="/filter_empcrud/MainPage.html";
+			 
+		 }
+</script>
+</head>
+<body>
+	<form action="MainPage.html"  method="get" onsubmit="fu(event)">
+	<label>username</label>
+ 	<input type="text" name="name" id="nm">
+ 	<label>password</label>
+ 	<input type="text" name="ps" id="pss">
+ 	<input type="submit" id="s" name="ss" value="SUBMIT">
+ 	</form>
+ 	
+ 	
+ 	
+</body>
+</html>
