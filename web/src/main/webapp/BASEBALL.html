@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="t1"></div>
+	<ul id="t2"></ul>
+	<script>
+		const data = null;
+
+		const xhr = new XMLHttpRequest();
+		xhr.withCredentials = true;
+
+		xhr.addEventListener('readystatechange', function () {
+			if (this.readyState === this.DONE) {
+				console.log(this.responseText);
+				const var1 = JSON.parse(this.responseText);
+
+				// Create an unordered list
+				const ul = document.createElement("ul");
+
+				// Append list items with the data to the unordered list
+				ul.innerHTML = `
+					<li>Country Name: ${var1[0].country.name}</li>
+					<li>Short Name: ${var1[0].country.shortName}</li>
+					<li>Country ID: ${var1[0].country.id}</li>
+					<li>Participant Type Name: ${var1[0].participantType.name}</li>
+					<li>Participant Type ID: ${var1[0].participantType.id}</li>
+					<li>League Name: ${var1[0].name}</li>
+				`;
+
+				// Append the unordered list to the element with ID "t2"
+				document.getElementById("t2").appendChild(ul);
+			}
+		});
+
+		xhr.open('GET', 'https://baseball-data.p.rapidapi.com/tournament/list');
+		xhr.setRequestHeader('X-RapidAPI-Key', '1329f0ccc1msh70c24d9fc1a88c8p146fd2jsn223019fe1b4f');
+		xhr.setRequestHeader('X-RapidAPI-Host', 'baseball-data.p.rapidapi.com');
+
+		xhr.send(data);
+	</script>
+</body>
+</html>

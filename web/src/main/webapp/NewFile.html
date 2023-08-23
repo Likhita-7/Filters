@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="t1"></div>
+<script>
+	const data = JSON.stringify({
+	search: 'Pun'
+});
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener('readystatechange', function () {
+	if (this.readyState === this.DONE) {
+		console.log(this.responseText);
+	}
+});
+
+xhr.open('POST', 'https://std.p.rapidapi.com/');
+xhr.setRequestHeader('content-type', 'application/json');
+xhr.setRequestHeader('X-RapidAPI-Key', '1329f0ccc1msh70c24d9fc1a88c8p146fd2jsn223019fe1b4f');
+xhr.setRequestHeader('X-RapidAPI-Host', 'std.p.rapidapi.com');
+
+xhr.send(data);
+</script>
+</body>
+</html>

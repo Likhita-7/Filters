@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>flight details</title>
+
+<style>
+    /* CSS styling for the table */
+    table {
+        border: 1px solid #000; /* 1px solid black border */
+        border-collapse: collapse; /* Optional: collapse borders into a single border */
+        width: 100%; /* Optional: Set the width of the table to 100% */
+    }
+
+    th, td {
+        border: 1px solid #000; /* 1px solid black border for header and data cells */
+        padding: 8px; /* Optional: Add padding to cells for better spacing */
+    }
+
+    th {
+        background-color: #f2f2f2; /* Optional: Add a background color to header cells */
+    }
+</style>
+</head>
+<body>
+	<div id="tableContainer"></div>
+	<script>
+		const data = null;
+
+		const xhr = new XMLHttpRequest();
+		xhr.withCredentials = true;
+
+		xhr.addEventListener('readystatechange', function () {
+			if (this.readyState === this.DONE) {
+				console.log(this.responseText);
+
+				// Table
+				const tableContainer = document.getElementById("tableContainer"); // Correctly select the existing div
+				const table = document.createElement("table");
+				const headers = ["iata_code", "name", "icao_code"];
+
+				const headerRow = table.insertRow();
+				headers.forEach(headerText => {
+					const headerCell = headerRow.insertCell();
+					headerCell.textContent = headerText;
+				});
+
+				const var1 = JSON.parse(this.responseText);
+
+				for (let i = 0; i < var1.length; i++) {
+					// Table data
+					const data = var1[i];
+					const row = table.insertRow();
+
+					const cell1 = row.insertCell();
+					cell1.innerHTML = data.iata_code;
+
+					const cell2 = row.insertCell();
+					cell2.innerHTML = data.name;
+
+					const cell3 = row.insertCell();
+					cell3.innerHTML = data.icao_code;
+				}
+
+				tableContainer.appendChild(table);
+			}
+		});
+
+		xhr.open('GET', 'https://iata-and-icao-codes.p.rapidapi.com/airlines');
+		xhr.setRequestHeader('X-RapidAPI-Key', '1329f0ccc1msh70c24d9fc1a88c8p146fd2jsn223019fe1b4f');
+		xhr.setRequestHeader('X-RapidAPI-Host', 'iata-and-icao-codes.p.rapidapi.com');
+
+		xhr.send(data);
+	</script>
+
+</body>
+</html>

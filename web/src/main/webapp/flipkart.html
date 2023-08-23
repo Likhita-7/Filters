@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>flipkart.com</title>
+
+</head>
+<body>
+	<center>
+	<h1 class="heading">FLIPKART</h1>
+	</center>
+	<div class="items" id="t1"></div>
+	<script>
+	var productsData = 
+
+[
+  {
+    "name": "Wireless Bluetooth Earbuds",
+    "description": "High-quality wireless earbuds with noise-cancellation.",
+    "price": 49.99,
+    "image_url": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2lyZWxlc3MlMjBlYXJidWRzfGVufDB8fDB8fHww&w=1000&q=80" ,
+    "category": "Electronics"
+  },
+  {
+    "name": "Insulated Stainless Steel Water Bottle",
+    "description": "Double-wall vacuum insulated water bottle, keeps drinks cold/hot for hours.",
+    "price": 19.99,
+    "image_url": "https://media.istockphoto.com/id/1197596253/photo/silver-stainless-steel-aluminium-outdoor-hiking-glossy-metal-water-bottle-with-cap-handle.jpg?s=612x612&w=0&k=20&c=15tKNv40TMXPQZncxNX0iplOyf7Ds_aUMxc5ZlbYxc4=",
+    "category": "Home & Kitchen"
+  },
+  {
+    "name": "Fitness Tracker Watch",
+    "description": "Track your daily activity, heart rate, and receive notifications on this smartwatch.",
+    "price": 79.99,
+    "image_url": "https://m.media-amazon.com/images/I/61Ly9aJhL2L.jpg",
+    "category": "Sports & Outdoors"
+  },
+  {
+    "name": "Non-Slip Yoga Mat",
+    "description": "High-density cushioned yoga mat with non-slip surface.",
+    "price": 29.99,
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVYE-c7VZRX0rRc7eoTFBPXDZO7zvRzTnhmM-RGHDm&s",
+    "category": "Sports & Outdoors"
+  },
+  {
+    "name": "Portable Phone Charger",
+    "description": "Compact and fast-charging power bank for your mobile devices.",
+    "price": 24.99,
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHdIZXO9oU3OPC9yzN_AeGbHBecccSjLP9mrLDsxKAHw&sjpg",
+    "category": "Electronics"
+  },
+  {
+    "name": "Stainless Steel Cooking Utensil Set",
+    "description": "Set of durable stainless steel cooking utensils for everyday cooking.",
+    "price": 39.99,
+    "image_url": "https://m.media-amazon.com/images/I/81HpfWzaNXL.jpg",
+    "category": "Home & Kitchen"
+  },
+  {
+    "name": "Memory Foam Neck Pillow",
+    "description": "Ergonomic memory foam neck pillow for comfortable travel.",
+    "price": 16.99,
+    "image_url": "https://m.media-amazon.com/images/I/61p7hp-TDWL.jpg",
+    "category": "Travel"
+  },
+  {
+    "name": "LED Desk Lamp with USB Charging Port",
+    "description": "Adjustable LED desk lamp with built-in USB charging port.",
+    "price": 32.99,
+    "image_url": "https://m.media-amazon.com/images/I/51Dy3iwJ9VL._AC_UF894,1000_QL80_.jpg",
+    "category": "Home & Kitchen"
+  },
+  {
+    "name": "Reusable Grocery Bags",
+    "description": "Set of eco-friendly and foldable reusable grocery bags.",
+    "price": 12.99,
+    "image_url": "https://images.pexels.com/photos/1666067/pexels-photo-1666067.jpeg?cs=srgb&dl=pexels-george-dolgikh-1666067.jpg&fm=jpg",
+    "category": "Home & Kitchen"
+  },
+  {
+    "name": "Basic First Aid Kit",
+    "description": "Essential first aid supplies in a compact and portable kit.",
+    "price": 14.99,
+    "image_url": "https://img.freepik.com/premium-vector/first-aid-box-medicine-around-it_642458-628.jpg",
+    "category": "Health & Personal Care"
+  }
+];
+
+	
+		
+		function createElements(){
+			productsData.forEach(pro=>{
+				var divd=document.createElement("div");
+				
+				var img1=document.createElement("img");
+				img1.src=pro.image_url;
+				img1.alt="name";
+				divd.appendChild(img1);
+				
+				var name=document.createElement("h4");
+				name.textContent=pro.name;
+				divd.appendChild(name);
+				
+				var desc=document.createElement("p");
+				desc.textContent=pro.description;
+				divd.appendChild(desc);
+				
+				var price=document.createElement("h4");
+				price.textContent='$'+pro.price;
+				divd.appendChild(price);
+				
+				var button1=document.createElement("button");
+				button1.textContent="add-to-cart";
+				button1.addEventListener('click',function(){
+					addToCart(pro);
+				});
+				
+				divd.appendChild(button1);
+				var x=document.getElementById("t1");
+				x.appendChild(divd);
+				
+				
+			}
+			);
+		}
+		window.onload=createElements;
+		function addToCart(pro){
+			var cartItems=JSON.parse(localStorage.getItem('cart')) ||[];
+			cartItems.push(pro);
+			localStorage.setItem('cart',JSON.stringify(cartItems));
+			alert("product added to cart");
+		}
+	</script>
+
+</body>
+</html>
